@@ -21,6 +21,7 @@ import android.widget.Toast;
 
 import com.zomato.photofilters.imageprocessors.Filter;
 import com.zomato.photofilters.imageprocessors.subfilters.BrightnessSubFilter;
+import com.zomato.photofilters.imageprocessors.subfilters.ColorOverlaySubFilter;
 import com.zomato.photofilters.imageprocessors.subfilters.ContrastSubFilter;
 import com.zomato.photofilters.imageprocessors.subfilters.SaturationSubFilter;
 
@@ -45,6 +46,8 @@ public class FilterActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_filter);
         globals.transStatus(getWindow());
+        ActivityCompat.requestPermissions(FilterActivity.this, new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE},1);
+        ActivityCompat.requestPermissions(FilterActivity.this, new String[]{Manifest.permission.READ_EXTERNAL_STORAGE},1);
         setImage();
         call();
     }
@@ -102,9 +105,12 @@ public class FilterActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Filter myFilter = new Filter();
-                myFilter.addSubFilter(new SaturationSubFilter(-1f));
-                myFilter.addSubFilter(new ContrastSubFilter(1.7f));
-                myFilter.addSubFilter(new BrightnessSubFilter(70));
+
+                myFilter.addSubFilter(new BrightnessSubFilter(5));
+                myFilter.addSubFilter(new SaturationSubFilter(0.8f));
+                myFilter.addSubFilter(new ContrastSubFilter(1.9f));
+                myFilter.addSubFilter(new ColorOverlaySubFilter(100, .6f, .5f, .1f));
+
                 Bitmap image = originalBitmap.copy(Bitmap.Config.ARGB_8888, true);
                 Bitmap outputImage = myFilter.processFilter(image);
                 showImg.setImageBitmap(outputImage);
@@ -120,13 +126,43 @@ public class FilterActivity extends AppCompatActivity {
         export_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(FilterActivity.this,"Successfuly Saved",Toast.LENGTH_SHORT).show();
+                saveToGallery();
 
+                Toast.makeText(FilterActivity.this,"Successfuly Saved",Toast.LENGTH_SHORT).show();
             }
         });
 
     }
 
+    private void saveToGallery(){
+        BitmapDrawable bitmapDrawable = (BitmapDrawable) showImg.getDrawable();
+        Bitmap bitmap = bitmapDrawable.getBitmap();
+
+        FileOutputStream outputStream = null;
+        File file = Environment.getExternalStorageDirectory();
+        File dir = new File(file.getAbsolutePath() + "/MyPics");
+        dir.mkdirs();
+
+        String filename = String.format("%d.png",System.currentTimeMillis());
+        File outFile = new File(dir,filename);
+        try{
+            outputStream = new FileOutputStream(outFile);
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+        bitmap.compress(Bitmap.CompressFormat.PNG,100,outputStream);
+        try{
+            outputStream.flush();
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+        try{
+            outputStream.close();
+        }
+        catch (Exception e){
+            e.printStackTrace();
+        }
+    }
 
 
 
