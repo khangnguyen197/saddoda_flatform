@@ -78,54 +78,59 @@
 
         <ImageButton
             android:id="@+id/filter1"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_margin="5dp"
             android:layout_weight="1"
             android:background="@null"
-            android:contentDescription="@string/description" />
+            android:contentDescription="@string/description"
+            android:src="@drawable/filt1" />
 
         <ImageButton
             android:id="@+id/filter2"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_margin="5dp"
             android:layout_weight="1"
             android:background="@null"
-            android:contentDescription="@string/description" />
+            android:contentDescription="@string/description"
+            android:src="@drawable/filt2" />
 
         <ImageButton
             android:id="@+id/filter3"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_margin="5dp"
             android:layout_weight="1"
             android:background="@null"
-            android:contentDescription="@string/description" />
+            android:contentDescription="@string/description"
+            android:src="@drawable/filt3" />
 
         <ImageButton
             android:id="@+id/filter4"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_margin="5dp"
             android:layout_weight="1"
             android:background="@null"
-            android:contentDescription="@string/description" />
+            android:contentDescription="@string/description"
+            android:src="@drawable/filt4" />
 
         <ImageButton
             android:id="@+id/filter5"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_margin="5dp"
             android:layout_weight="1"
             android:background="@null"
-            android:contentDescription="@string/description" />
+            android:contentDescription="@string/description"
+            android:src="@drawable/none" />
     </LinearLayout>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:background="#E4F8F8F8"
+        android:background="@color/contentColor"
         android:translationZ="0dp"
 
         app:layout_constraintBottom_toBottomOf="@id/g2"

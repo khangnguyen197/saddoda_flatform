@@ -18,6 +18,8 @@ public class OnCreate extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_on_create);
         globals.transStatus(getWindow());
+
+        /** Set time close activity automatically */
         timer = new Timer();
         timer.schedule(new TimerTask() {
             @Override
