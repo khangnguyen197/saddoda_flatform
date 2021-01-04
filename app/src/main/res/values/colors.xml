@@ -9,4 +9,11 @@
     <color name="matteBlack">#333333</color>
     <color name="iconColor">#F1F1F1</color>
     <color name='contentColor'>#F8f8f8</color>
+    <color name='brushRed'>#ff0000</color>
+    <color name='brushOrange'>#ff8000</color>
+    <color name='brushYellow'>#ffff00</color>
+    <color name='brushGreen'>#80ff00</color>
+    <color name='brushBlue'>#00ffff</color>
+    <color name='brushPurple'>#bf00ff</color>
+    <color name='brushPink'>#ff00ff</color>
 </resources>

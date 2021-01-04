@@ -11,7 +11,6 @@
     <string name="export">Export</string>
     <string name="saddoda">SADDODA</string>
     <string name="add_emoji">Add Emoji</string>
-    <string name="brush">Brush</string>
     <string name="emoji">Emoji</string>
     <string name="fx_effect">FX Effect</string>
     <string name="title_activity_notification">notification</string>
@@ -25,4 +24,9 @@
     <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="brush_size">Brush Size</string>
+    <string name="brush">Brush</string>
+    <string name="opacity">Opacity</string>
+    <string name="eraser">Eraser</string>
+    <string name="successfully_saved">Successfully saved</string>
 </resources>

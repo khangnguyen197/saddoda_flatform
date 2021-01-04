@@ -17,8 +17,9 @@ public class ColorAdapter extends RecyclerView.Adapter<ColorAdapter.ColorViewhol
 
 
     Context context;
-    List<Integer> colorList;
+    List<Integer> colorList;        //Store new color
     ColorAdpaterListener listener;
+
     public ColorAdapter(Context context, List<Integer> colorList, ColorAdpaterListener listener) {
         this.context = context;
         this.colorList = colorList;
@@ -32,16 +33,19 @@ public class ColorAdapter extends RecyclerView.Adapter<ColorAdapter.ColorViewhol
         return new ColorViewholder(itemView);
     }
 
+    /** Set color to each position in RecyclerView */
     @Override
     public void onBindViewHolder(@NonNull ColorViewholder holder, int position) {
             holder.color_selection.setBackgroundColor(colorList.get(position));
     }
 
+    /** Get quantity color assign to RecyclerView */
     @Override
     public int getItemCount() {
         return colorList.size();
     }
 
+    /** Pick color event*/
     public class ColorViewholder extends RecyclerView.ViewHolder  {
 
         public CardView color_selection;

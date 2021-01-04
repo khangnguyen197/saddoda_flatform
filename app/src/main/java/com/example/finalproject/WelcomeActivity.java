@@ -26,7 +26,7 @@ public class WelcomeActivity extends AppCompatActivity implements BrushInterface
     private static Bitmap bitmap_transfer;
     static
     {
-        System.loadLibrary("NativeImageProcessor");
+        System.loadLibrary("NativeImageProcessor");     //Load image library
     }
     PhotoEditorView photoEditorView;
     PhotoEditor photoEditor;
@@ -36,16 +36,13 @@ public class WelcomeActivity extends AppCompatActivity implements BrushInterface
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         Globals globals = new Globals();
-
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         addImage();
         globals.transStatus(getWindow());
-
-
     }
 
-    /**Load image to app */
+    /**Load image button event */
     private void addImage() {
         ImageButton addBtn = (ImageButton) findViewById(R.id.addImg);
 
@@ -55,6 +52,8 @@ public class WelcomeActivity extends AppCompatActivity implements BrushInterface
                 setContentView(R.layout.edit_option);
                 openGallery();
                 setClick();
+                Globals globals = new Globals();
+                globals.transStatus(getWindow());
 
             }
         });
@@ -74,7 +73,6 @@ public class WelcomeActivity extends AppCompatActivity implements BrushInterface
         Button filterBtn = (Button) findViewById(R.id.filter_button);
         Button addEmojiBtn = (Button) findViewById(R.id.add_emoji_button);
         Button cancelBtn = (Button) findViewById(R.id.cancel_button);
-        Button addMoreBtn = (Button) findViewById(R.id.addmore_button);
         Button brushBtn = (Button) findViewById(R.id.brush_button);
 
         brushBtn.setOnClickListener(new View.OnClickListener() {
@@ -82,7 +80,7 @@ public class WelcomeActivity extends AppCompatActivity implements BrushInterface
             public void onClick(View view) {
                 photoEditor.setBrushDrawingMode(true);
                 BrushFragment brushfragment = BrushFragment.getInstance();
-                brushfragment.setListener(WelcomeActivity.this);
+                brushfragment.setListener(WelcomeActivity.this);            //Event to show modal and many things of brush tools
                 brushfragment.show(getSupportFragmentManager(),brushfragment.getTag());
             }
         });
@@ -100,7 +98,7 @@ public class WelcomeActivity extends AppCompatActivity implements BrushInterface
         filterBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                photoEditorView.buildDrawingCache();                //do not remove, use for copy image
+                photoEditorView.buildDrawingCache();                    //do not remove, use for copy image
                 setBitmap_transfer(photoEditorView.getDrawingCache()); //do not remove, use for copy image
 
                 Intent filterIntent = new Intent(WelcomeActivity.this, FilterActivity.class);
@@ -118,10 +116,10 @@ public class WelcomeActivity extends AppCompatActivity implements BrushInterface
         });
     }
 
-    //Load METHOD
+    /** Load image from gallery*/
     private void openGallery() {
         Intent gallery = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.INTERNAL_CONTENT_URI);
-        startActivityForResult(gallery, PICK_IMAGE);
+        startActivityForResult(gallery, PICK_IMAGE); //waiting for result value
     }
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data){
@@ -136,10 +134,10 @@ public class WelcomeActivity extends AppCompatActivity implements BrushInterface
             photoEditorView.getSource().setImageURI(imageUri);
             BitmapDrawable drawable = (BitmapDrawable) photoEditorView.getSource().getDrawable();
             originalImage = drawable.getBitmap();
-
         }
     }
 
+    /** Override brush methods */
     @Override
     public void onBrushSizeChangeListener(float size) {
         photoEditor.setBrushSize(size);
@@ -163,7 +161,7 @@ public class WelcomeActivity extends AppCompatActivity implements BrushInterface
             photoEditor.setBrushDrawingMode(true);
     }
 
-
+    /** Override emoji methods */
     @Override
     public void onEmojiSelected(String emoji) {
         photoEditor.addEmoji(emoji);

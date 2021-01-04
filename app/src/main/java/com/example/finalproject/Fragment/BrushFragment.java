@@ -37,9 +37,11 @@ public class BrushFragment extends BottomSheetDialogFragment implements ColorAda
         }
         return instance;
     }
+
     public void setListener(BrushInterface listener){
         this.listener=listener;
     }
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -73,6 +75,7 @@ public class BrushFragment extends BottomSheetDialogFragment implements ColorAda
 
             }
         });
+
         seekBar_brush_size.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
             public void onProgressChanged(SeekBar seekBar, int i, boolean b) {
@@ -96,13 +99,19 @@ public class BrushFragment extends BottomSheetDialogFragment implements ColorAda
         return itemView;
     }
 
+    /** Color setting */
     private List<Integer> genColorList() {
         List<Integer> colorList = new ArrayList<>();
 
-        colorList.add(Color.parseColor("#131722"));
-        colorList.add(Color.parseColor("#33ff33"));
         colorList.add(Color.parseColor("#ff0000"));
-        colorList.add(Color.parseColor("#e600ac"));
+        colorList.add(Color.parseColor("#ff8000"));
+        colorList.add(Color.parseColor("#ffff00"));
+        colorList.add(Color.parseColor("#80ff00"));
+        colorList.add(Color.parseColor("#00ffff"));
+        colorList.add(Color.parseColor("#bf00ff"));
+        colorList.add(Color.parseColor("#ff00ff"));
+        colorList.add(Color.parseColor("#000000"));
+        colorList.add(Color.parseColor("#f2f2f2"));
 
         return colorList;
     }

@@ -8,7 +8,7 @@
             android:shape="rectangle">
 
             <stroke
-                android:color="@color/link"
+                android:color="@color/matteBlack"
                 android:dashWidth="2dp"
                 android:dashGap="3dp"
                 android:width="2dp"/>
