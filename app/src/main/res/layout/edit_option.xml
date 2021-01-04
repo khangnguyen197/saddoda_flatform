@@ -122,9 +122,9 @@
 
         <ja.burhanrashid52.photoeditor.PhotoEditorView
             android:id="@+id/imageAdded"
-            android:layout_width="0dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
+
             android:contentDescription="@string/description"
             app:layout_constraintVertical_bias="0.0"
             app:photo_src="@drawable/default_img" />
